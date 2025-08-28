@@ -2,95 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Healthcare AI Design System - Professional Medical Interface */
 
 @layer base {
   :root {
+    /* Medical Primary - Professional Healthcare Blue */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 27%;
 
+    /* Card System - Clean Medical Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
 
+    /* Popover System */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Medical Blue Theme */
+    --primary: 215 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 215 100% 95%;
+    --primary-glow: 215 100% 85%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Healthcare Green - Success/Health */
+    --secondary: 142 76% 36%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 142 76% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Medical Grays */
+    --muted: 215 16% 97%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Medical Teal */
+    --accent: 195 100% 95%;
+    --accent-foreground: 195 100% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Alert Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 35 100% 50%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* UI Elements */
+    --border: 215 16% 92%;
+    --input: 215 16% 97%;
+    --ring: 215 100% 40%;
 
-    --radius: 0.5rem;
+    /* Medical Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(180deg, hsl(var(--card)), hsl(var(--muted)));
+    --gradient-health: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-light)));
 
-    --sidebar-background: 0 0% 98%;
+    /* Medical Shadows */
+    --shadow-medical: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-card: 0 2px 10px -1px hsl(var(--primary) / 0.05);
+    --shadow-elevated: 0 8px 30px -4px hsl(var(--primary) / 0.15);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Professional Spacing */
+    --radius: 0.75rem;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Medical Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 215 25% 5%;
+    --foreground: 0 0% 95%;
+    --card: 215 25% 8%;
+    --card-foreground: 0 0% 95%;
+    --primary: 215 100% 60%;
+    --primary-foreground: 215 25% 5%;
+    --secondary: 142 76% 45%;
+    --secondary-foreground: 215 25% 5%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 16% 65%;
+    --border: 215 25% 18%;
+    --input: 215 25% 18%;
+    --ring: 215 100% 60%;
   }
 }
 
@@ -100,6 +89,53 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Medical Typography */
+  .text-medical-title {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+  }
+  
+  .text-medical-subtitle {
+    @apply text-xl md:text-2xl font-medium text-muted-foreground;
+  }
+  
+  .text-medical-body {
+    @apply text-base leading-relaxed text-foreground/90;
+  }
+}
+
+@layer components {
+  /* Medical Card Styles */
+  .card-medical {
+    @apply bg-card border border-border rounded-lg shadow-[var(--shadow-card)] transition-[var(--transition-smooth)];
+  }
+  
+  .card-medical-hover {
+    @apply hover:shadow-[var(--shadow-elevated)] hover:scale-[1.02];
+  }
+  
+  /* Medical Button Variants */
+  .btn-medical-primary {
+    @apply bg-primary text-primary-foreground shadow-[var(--shadow-medical)] hover:bg-primary/90 transition-[var(--transition-smooth)];
+  }
+  
+  .btn-medical-secondary {
+    @apply bg-secondary text-secondary-foreground shadow-[var(--shadow-card)] hover:bg-secondary/90 transition-[var(--transition-smooth)];
+  }
+  
+  /* Medical Form Elements */
+  .input-medical {
+    @apply border-2 border-border bg-input rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-[var(--transition-smooth)];
+  }
+  
+  /* Medical Icons */
+  .icon-medical {
+    @apply w-6 h-6 text-primary;
+  }
+  
+  .icon-medical-lg {
+    @apply w-8 h-8 text-primary;
   }
 }
