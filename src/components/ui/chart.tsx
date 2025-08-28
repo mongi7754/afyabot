@@ -74,28 +74,47 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
     return null
   }
 
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-  .map(([key, itemConfig]) => {
-    const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
-  })
-  .join("\n")}
-}
-`
-          )
-          .join("\n"),
-      }}
-    />
-  )
+  // Create CSS custom properties safely without dangerouslySetInnerHTML
+  const styleElement = React.useRef<HTMLStyleElement | null>(null)
+  
+  React.useEffect(() => {
+    if (!styleElement.current) {
+      styleElement.current = document.createElement('style')
+      document.head.appendChild(styleElement.current)
+    }
+
+    const styles = Object.entries(THEMES)
+      .map(([theme, prefix]) => {
+        const themeStyles = colorConfig
+          .map(([key, itemConfig]) => {
+            const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color
+            // Sanitize color values to prevent CSS injection
+            if (color && /^[a-zA-Z0-9#(),%.\s-]+$/.test(color)) {
+              return `  --color-${key.replace(/[^a-zA-Z0-9-]/g, '')}: ${color};`
+            }
+            return null
+          })
+          .filter(Boolean)
+          .join('\n')
+        
+        return themeStyles ? `${prefix} [data-chart="${id}"] {\n${themeStyles}\n}` : ''
+      })
+      .filter(Boolean)
+      .join('\n')
+
+    if (styleElement.current) {
+      styleElement.current.textContent = styles
+    }
+
+    return () => {
+      if (styleElement.current) {
+        document.head.removeChild(styleElement.current)
+        styleElement.current = null
+      }
+    }
+  }, [id, colorConfig])
+
+  return null
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
