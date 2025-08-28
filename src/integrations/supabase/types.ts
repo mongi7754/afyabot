@@ -14,7 +14,146 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clinics: {
+        Row: {
+          address: string
+          created_at: string
+          email: string | null
+          google_place_id: string | null
+          id: string
+          latitude: number
+          longitude: number
+          name: string
+          operating_hours: Json | null
+          phone: string | null
+          rating: number | null
+          services: string[] | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          email?: string | null
+          google_place_id?: string | null
+          id?: string
+          latitude: number
+          longitude: number
+          name: string
+          operating_hours?: Json | null
+          phone?: string | null
+          rating?: number | null
+          services?: string[] | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          email?: string | null
+          google_place_id?: string | null
+          id?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          operating_hours?: Json | null
+          phone?: string | null
+          rating?: number | null
+          services?: string[] | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      health_records: {
+        Row: {
+          attachments: string[] | null
+          clinic_name: string | null
+          created_at: string
+          date_recorded: string
+          description: string | null
+          doctor_name: string | null
+          id: string
+          record_type: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          attachments?: string[] | null
+          clinic_name?: string | null
+          created_at?: string
+          date_recorded?: string
+          description?: string | null
+          doctor_name?: string | null
+          id?: string
+          record_type: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          attachments?: string[] | null
+          clinic_name?: string | null
+          created_at?: string
+          date_recorded?: string
+          description?: string | null
+          doctor_name?: string | null
+          id?: string
+          record_type?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "health_records_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          date_of_birth: string | null
+          email: string | null
+          emergency_contact_name: string | null
+          emergency_contact_phone: string | null
+          full_name: string | null
+          gender: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          date_of_birth?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          date_of_birth?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
